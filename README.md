@@ -1,13 +1,23 @@
 # UN General Assermbly 81 - Speeches
 
-The app analyses the speech of each country at the #UNGA81 in September 2026.
+The app analyses the speech of each country at the #UNGA81 on 22 - 28 September, 2026.
+
+Features:
 
 - Summary of the speech.
 - Summary in one word.
+- Hashtags from the speech.
 - Countries mentioned in the speech with positive and negative sentiment.
+- Key stakeholders identified (Corporations, NGOs, individuals mentioned)
 - Risks mentioned in the speech.
 - Haiku generated with the speech.
 - Information about the country.
+- Mention of the 17SDGs
+  - SDG coverage matrix - % of speeches covering each SDG, who mentions most
+  - SDG implementation gaps - Countries claiming focus vs. actual mention frequency
+  - Policy translation quality - Whether specific SDG goals are discussed concretely
+- Speech length
+- Compare wealth levels with issue priority
 
 The process is the following:
 
