@@ -1,37 +1,32 @@
-[build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
-
 [project]
-name = "Project"
-dynamic = ["version"]
+name = "unga81"
+version = "0.1.0"
 authors = [
   { name="Diego Arenas", email="darenasc@gmail.com" }
 ]
 maintainers = [
   { name="Diego Arenas", email="darenasc@gmail.com" }
 ]
-description = "Project."
+description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.12"
 dependencies = [
-  "tqdm",
-  "openpyxl",
-  "pandas",
-  "nbconvert",
+    "pandas>=3.0.6",
+    "requests>=2.34.2",
 ]
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-]
-[project.optional-dependencies]
-database = [
-  "psycopg2-binary",
+
+[dependency-groups]
+dev = [
+    "black>=26.5.1",
+    "flake8>=7.3.0",
+    "ipykernel>=7.3.0",
+    "isort>=9.0.1",
+    "jupyter>=1.1.1",
+    "mypy>=2.3.1",
 ]
 [project.urls]
-Homepage = "https://github.com/darenasc/"
-Issues = "https://github.com/darenasc/issues"
+Homepage = "https://github.com/darenasc/unga81"
+Issues = "https://github.com/darenasc/unga81/issues"
 
 [tool.mypy]
 ignore_missing_imports = true
