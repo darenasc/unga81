@@ -63,7 +63,7 @@ ollama pull llama3.2
 ollama pull artifish/llama3.2-uncensored
 ```
 
-### UNGA80 repository
+### UNGA81 repository
 
 ```bash
 # Clone this repository
@@ -88,6 +88,7 @@ uv run streamlit run app/app.py
 - [REST Countries API](https://restcountries.com)
 
 ## Data
+- [#UNGA81 - United Nations General Assembly - YouTube playlist](https://www.youtube.com/playlist?list=PLB69IJorxm_g)
 - [UNGA81 Speech urls](https://docs.google.com/spreadsheets/d/1qtqfnRSW24j-XLN7SRKywDCuFatARCH8pUg1Rr6I2vI/export?format=csv&gid=1802282131)
 - [Admin 0 – Countries](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip)
 

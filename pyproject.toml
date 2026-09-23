@@ -11,9 +11,15 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "loguru>=0.7.3",
     "ollama>=0.6.2",
     "pandas>=3.0.6",
+    "pendulum>=3.2.0",
+    "python-dotenv>=1.2.3",
     "requests>=2.34.2",
+    "streamlit>=1.64.0",
+    "tqdm>=4.70.1",
+    "youtube-transcript-api>=1.2.4",
 ]
 
 [dependency-groups]
@@ -125,3 +131,8 @@ disable = '''print-statement,
         import-outside-toplevel,
         import-error,
 '''
+
+[tool.uv.workspace]
+members = [
+    "llm_extraction",
+]
