@@ -1,48 +1,48 @@
 [project]
 name = "unga81"
 version = "0.1.0"
-authors = [
-  { name="Diego Arenas", email="darenasc@gmail.com" }
-]
-maintainers = [
-  { name="Diego Arenas", email="darenasc@gmail.com" }
-]
+authors = [{ name = "Diego Arenas", email = "darenasc@gmail.com" }]
+maintainers = [{ name = "Diego Arenas", email = "darenasc@gmail.com" }]
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "folium>=0.20.0",
-    "loguru>=0.7.3",
-    "lonboard>=0.16.0",
-    "mapclassify>=2.11.0",
-    "maplibre[all]>=0.3.6",
-    "matplotlib>=3.11.2",
-    "ollama>=0.6.2",
-    "pandas>=2.1.4,<3.0.0",
-    "pendulum>=3.2.0",
-    "plotly>=7.1.0",
-    "python-dotenv>=1.2.3",
-    "requests>=2.34.2",
-    "streamlit>=1.64.0",
-    "streamlit-folium>=0.27.4",
-    "tqdm>=4.70.1",
-    "xmltodict>=1.0.4",
-    "youtube-transcript-api>=1.2.4",
+  "folium>=0.20.0",
+  "loguru>=0.7.3",
+  "lonboard>=0.16.0",
+  "mapclassify>=2.11.0",
+  "maplibre[all]>=0.3.6",
+  "matplotlib>=3.11.2",
+  "ollama>=0.6.2",
+  "pandas>=2.1.4,<3.0.0",
+  "pendulum>=3.2.0",
+  "plotly>=7.1.0",
+  "python-dotenv>=1.2.3",
+  "requests>=2.34.2",
+  "streamlit>=1.64.0",
+  "streamlit-folium>=0.27.4",
+  "tqdm>=4.70.1",
+  "typer>=0.27.2",
+  "xmltodict>=1.0.4",
+  "youtube-transcript-api>=1.2.4",
 ]
 
 [dependency-groups]
 dev = [
-    "black>=26.5.1",
-    "flake8>=7.3.0",
-    "ipykernel>=7.3.0",
-    "isort>=9.0.1",
-    "jupyter>=1.1.1",
-    "mlflow>=3.16.1",
-    "mypy>=2.3.1",
+  "black>=26.5.1",
+  "flake8>=7.3.0",
+  "ipykernel>=7.3.0",
+  "isort>=9.0.1",
+  "jupyter>=1.1.1",
+  "mlflow>=3.16.1",
+  "mypy>=2.3.1",
 ]
 [project.urls]
 Homepage = "https://github.com/darenasc/unga81"
 Issues = "https://github.com/darenasc/unga81/issues"
+
+[project.scripts]
+unga81 = 'unga81.main:app'
 
 [tool.mypy]
 ignore_missing_imports = true
@@ -141,6 +141,4 @@ disable = '''print-statement,
 '''
 
 [tool.uv.workspace]
-members = [
-    "llm_extraction",
-]
+members = ["llm_extraction"]

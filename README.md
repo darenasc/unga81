@@ -74,6 +74,9 @@ uv sync
 
 # Run the streamlit app
 uv run streamlit run app/app.py
+
+# Download video URLs, transcripts and country information
+uv run unga81
 ```
 
 ## Tools used
