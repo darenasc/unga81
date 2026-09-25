@@ -13,9 +13,6 @@ Features:
 - Haiku generated with the speech.
 - Information about the country.
 - Mention of the 17SDGs
-  - SDG coverage matrix - % of speeches covering each SDG, who mentions most
-  - SDG implementation gaps - Countries claiming focus vs. actual mention frequency
-  - Policy translation quality - Whether specific SDG goals are discussed concretely
 - Speech length
 - Compare wealth levels with issue priority
 
@@ -43,10 +40,10 @@ flowchart LR
 
 ## LLM application
 
-* [ ] Summary of the speech
-* [ ] Summary in one word
+* [x] Summary of the speech
+* [x] Summary in one word
+* [x] Risks mentioned in the speech
 * [ ] List of countries mentioned and sentiment
-* [ ] Risks mentioned in the speech
 * [ ] Emotion detection: speech, such as happiness, sadness, anger, or excitement
 * [ ] **Inference Generation**: Use LLMs to generate inferences based on the speech content, such as predicting potential consequences of policy decisions oranticipating international reactions.
 * [ ] Audio generation in Yoda's style

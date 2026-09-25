@@ -21,3 +21,19 @@ def wordcount(text):
 
     # Count the number of words with characters
     return sum(len(word) for word in words if word.isalpha())
+
+
+def get_paragraphs(text: str) -> str:
+    """Returns a plain text into paragraphs.
+
+    Args:
+        text (str): Text.
+
+    Returns:
+        str: Same text adding double line returns.
+    """
+    sentences = text.replace(". ", ".. ").split(". ")
+    for i in range(0, len(sentences), 5):
+        sentences[i] = sentences[i] + "\n\n"
+
+    return " ".join(sentences)

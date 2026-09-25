@@ -11,14 +11,22 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "folium>=0.20.0",
     "loguru>=0.7.3",
+    "lonboard>=0.16.0",
+    "mapclassify>=2.11.0",
+    "maplibre[all]>=0.3.6",
+    "matplotlib>=3.11.2",
     "ollama>=0.6.2",
-    "pandas>=3.0.6",
+    "pandas>=2.1.4,<3.0.0",
     "pendulum>=3.2.0",
+    "plotly>=7.1.0",
     "python-dotenv>=1.2.3",
     "requests>=2.34.2",
     "streamlit>=1.64.0",
+    "streamlit-folium>=0.27.4",
     "tqdm>=4.70.1",
+    "xmltodict>=1.0.4",
     "youtube-transcript-api>=1.2.4",
 ]
 

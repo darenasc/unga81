@@ -85,10 +85,10 @@ def download_all_transcripts(
     for i, r in df.iterrows():
 
         if (path / f"{r['country']}.json").exists() and not overwrite:
-            logger.info(f"{i}/{df.shape[0]} {r['country']} transcript exists")
+            logger.info(f"{i+1}/{df.shape[0]} {r['country']} transcript exists")  # type: ignore
             continue
 
-        logger.info(f"{i}/{df.shape[0]} {r['country']} downloading transcript")
+        logger.info(f"{i + 1}/{df.shape[0]} {r['country']} downloading transcript")  # type: ignore
         transcript = get_transcript(
             r["url"].split("/")[-1].split("?")[0]
             if "youtu.be" in r["url"]
@@ -96,7 +96,7 @@ def download_all_transcripts(
         )
         time.sleep(DELAY_IN_SECONDS)
         if transcript:
-            logger.info(f"{i}/{df.shape[0]} {r["country"]} saving transcript")
+            logger.info(f"{i + 1}/{df.shape[0]} {r["country"]} saving transcript")  # type: ignore
             save_json(transcript.to_raw_data(), r["country"])
 
     end = pendulum.now()
