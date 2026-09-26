@@ -85,7 +85,7 @@ def download_all_transcripts(
     for i, r in df.iterrows():
 
         if (path / f"{r['country']}.json").exists() and not overwrite:
-            logger.info(f"{i+1}/{df.shape[0]} {r['country']} transcript exists")  # type: ignore
+            # logger.info(f"{i+1}/{df.shape[0]} {r['country']} transcript exists")  # type: ignore
             continue
 
         logger.info(f"{i + 1}/{df.shape[0]} {r['country']} downloading transcript")  # type: ignore

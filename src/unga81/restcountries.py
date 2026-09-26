@@ -57,7 +57,7 @@ def download_country_data(alpha_3: str, output_path: Path, overwrite: bool = Fal
     """
     file_path = output_path / f"{alpha_3}.json"
     if file_path.exists() and not overwrite:
-        logger.info(f"'{file_path.name}' exists, skipping download")
+        # logger.info(f"'{file_path.name}' exists, skipping download")
         return
 
     data_pais = get_country_information(alpha_3=alpha_3)
