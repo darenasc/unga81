@@ -1,4 +1,8 @@
-# UN General Assermbly 81 - Speeches
+# UN General Assermbly #81 - Speeches
+
+[![UN Noon Briefings](https://img.shields.io/badge/-United_Nations-009EDB?style=flat&logo=unitednations&logoColor=white)](https://www.un.org)
+[![UN Noon Briefings](https://img.shields.io/badge/-UNGA81_Playlist-ee0f0f?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=_Wjvf2jJols&list=PLB69IJorxm_g)
+
 
 The app analyses the speech of each country at the #UNGA81 on 22 - 28 September, 2026.
 
@@ -15,28 +19,9 @@ Features:
 - Mention of the 17SDGs
 - Speech length
 - Compare wealth levels with issue priority
-
-The process is the following:
-
-```mermaid
-flowchart LR
-    data_collection(Download URLs) --> transcripts(Get transcripts)
-    transcripts --> summary(LLM summary)
-    transcripts --> word(LLM one word)
-    transcripts --> haiku(LLM haiku)
-    transcripts --> risks(LLM risks)
-    transcripts --> other_countries(LLM countries mentioned)
-
-    summary --> streamlit(Streamlit App)
-    word --> streamlit(Streamlit App)
-    haiku --> streamlit(Streamlit App)
-    risks --> streamlit(Streamlit App)
-    other_countries --> streamlit(Streamlit App)
-    rest(REST Countries API) --> streamlit(Streamlit App)
-
-```
-
-![](images/screenshot.png)
+- Message x population = relevance
+  - prorata population with number of messages
+  - equal value to all messages from a country
 
 ## LLM application
 
@@ -57,7 +42,6 @@ This repository requires [`uv`](https://docs.astral.sh/uv/getting-started/instal
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.2
-ollama pull artifish/llama3.2-uncensored
 ```
 
 ### UNGA81 repository
@@ -86,11 +70,14 @@ uv run unga81
 - `artifish/llama3.2-uncensored` model
 - [plotly](https://docs.plotly.com)
 - [REST Countries API](https://restcountries.com)
+- [Worldometer.info](https://www.worldometers.info)
+- [Sustainable Development Reportdatabase](https://dashboards.sdgindex.org/) 
 
 ## Data
 - [#UNGA81 - United Nations General Assembly - YouTube playlist](https://www.youtube.com/playlist?list=PLB69IJorxm_g)
 - [UNGA81 Speech urls](https://docs.google.com/spreadsheets/d/1qtqfnRSW24j-XLN7SRKywDCuFatARCH8pUg1Rr6I2vI/export?format=csv&gid=1802282131)
 - [Admin 0 – Countries](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip)
+- [Sustainable Development Report - Access full database in Excel](https://dashboards.sdgindex.org/static/downloads/database_2026.xlsx) (accessed 27.09.2026)
 
 ## Previous years
 
