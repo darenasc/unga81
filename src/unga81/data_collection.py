@@ -143,7 +143,7 @@ def get_corpus_from_file(
         json_data = json.load(f)
     corpus = [x["text"] for x in json_data if x["start"] > start and x["start"] < end]
     large_corpus = " ".join([x for x in corpus])
-    logger.info(f"{country} transcript found")
+    # logger.info(f"{country} transcript found")
     return large_corpus
 
 

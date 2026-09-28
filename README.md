@@ -3,35 +3,26 @@
 [![UN Noon Briefings](https://img.shields.io/badge/-United_Nations-009EDB?style=flat&logo=unitednations&logoColor=white)](https://www.un.org)
 [![UN Noon Briefings](https://img.shields.io/badge/-UNGA81_Playlist-ee0f0f?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=_Wjvf2jJols&list=PLB69IJorxm_g)
 
-
 The app analyses the speech of each country at the #UNGA81 on 22 - 28 September, 2026.
 
-Features:
+This is a personal project with the aim to explore the messages in the speeches 
+at the #UNGA81.
 
-- Summary of the speech.
-- Summary in one word.
-- Hashtags from the speech.
-- Countries mentioned in the speech with positive and negative sentiment.
-- Key stakeholders identified (Corporations, NGOs, individuals mentioned)
-- Risks mentioned in the speech.
-- Haiku generated with the speech.
-- Information about the country.
-- Mention of the 17SDGs
-- Speech length
-- Compare wealth levels with issue priority
-- Message x population = relevance
-  - prorata population with number of messages
-  - equal value to all messages from a country
+The app is a combination of the usage of LLMs to generate information from the 
+speeches and publicly available information about the country such as 
+population, GDP, GDP per capita, government type, link to wikipedia page and 
+link to SDG report country profile.
 
 ## LLM application
 
 * [x] Summary of the speech
 * [x] Summary in one word
 * [x] Risks mentioned in the speech
-* [ ] List of countries mentioned and sentiment
-* [ ] Emotion detection: speech, such as happiness, sadness, anger, or excitement
-* [ ] **Inference Generation**: Use LLMs to generate inferences based on the speech content, such as predicting potential consequences of policy decisions oranticipating international reactions.
-* [ ] Audio generation in Yoda's style
+* [x] List of countries mentioned
+* [x] A haiku generated from the speech
+* [x] Hashtags generated from the speech
+* [x] Fictitional newspaper headlines in different styles
+* [x] A message from master Yoda
 
 ## Usage locally
 
@@ -42,6 +33,9 @@ This repository requires [`uv`](https://docs.astral.sh/uv/getting-started/instal
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull llama3.2
+ollama pull qwen2.5:3b
+ollama pull qwen3.5:0.8b
+ollama pull gemma3:4b
 ```
 
 ### UNGA81 repository
@@ -67,13 +61,13 @@ uv run unga81
 
 - Ollama
 - sqlite3
-- `artifish/llama3.2-uncensored` model
-- [plotly](https://docs.plotly.com)
+- [Vector data from Natural Earth Data](https://www.naturalearthdata.com)
 - [REST Countries API](https://restcountries.com)
 - [Worldometer.info](https://www.worldometers.info)
-- [Sustainable Development Reportdatabase](https://dashboards.sdgindex.org/) 
+- [Sustainable Development Report database](https://dashboards.sdgindex.org/) 
 
 ## Data
+
 - [#UNGA81 - United Nations General Assembly - YouTube playlist](https://www.youtube.com/playlist?list=PLB69IJorxm_g)
 - [UNGA81 Speech urls](https://docs.google.com/spreadsheets/d/1qtqfnRSW24j-XLN7SRKywDCuFatARCH8pUg1Rr6I2vI/export?format=csv&gid=1802282131)
 - [Admin 0 – Countries](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip)

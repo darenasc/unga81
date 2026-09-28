@@ -37,6 +37,7 @@ def create_database(db_path: Path = DATABASE_PATH):
                 single_word TEXT,
                 hashtags TEXT,
                 headlines TEXT
+                yoda TEXT
                 );                
                 """
     with sqlite3.connect(db_path) as conn:

@@ -10,7 +10,7 @@ import streamlit as st
 from streamlit_folium import st_folium
 
 from unga81 import database
-from unga81.config import EXTERNAL_DATA_DIR
+from unga81.config import EXTERNAL_DATA_DIR, PROCESSED_DATA_DIR
 from unga81.utils import get_paragraphs
 
 st.set_page_config(
@@ -35,6 +35,7 @@ def get_data(db: Path):
     - risks
     - haiku
     - word
+    - yoda
     """
     with sqlite3.connect(db) as conn:
         cursor = conn.cursor()
@@ -50,7 +51,8 @@ def get_data(db: Path):
                                     a.haiku,
                                     a.single_word,
                                     a.hashtags,
-                                    a.headlines
+                                    a.headlines,
+                                    a.yoda
                                 FROM
                                     country as c left join analysis as a
                                     on c.country = a.country ;""").fetchall()
@@ -69,6 +71,7 @@ def get_geodata(file_path: Path = EXTERNAL_DATA_DIR / "ne_110m_admin_0_countries
     return geo_data
 
 
+@st.cache_data
 def get_country_data(alpha_3: str):
     file_path = EXTERNAL_DATA_DIR / "restcountriesapi" / f"{alpha_3}.json"
     if not file_path.exists():
@@ -81,6 +84,8 @@ def get_country_data(alpha_3: str):
 
 df = get_data(Path(__file__).absolute().parent / "countries.db")
 geo_data = get_geodata(EXTERNAL_DATA_DIR / "ne_110m_admin_0_countries.zip")
+df_gdp = pd.read_csv(PROCESSED_DATA_DIR / "worldometer.csv")
+df_sdg = pd.read_csv(PROCESSED_DATA_DIR / "sdg_countries.csv")
 
 
 if "random_initial_country" not in st.session_state:
@@ -99,30 +104,55 @@ with st.sidebar:
     st.caption(iso_3_selection)
     st.divider()
 
+    # economic
+    if iso_3_selection in df_gdp["iso_3"].to_list():
+        gdp = df_gdp[df_gdp["iso_3"] == iso_3_selection]["gdp (us$) wb"].values[0]
+        gdp_per_capita = df_gdp[df_gdp["iso_3"] == iso_3_selection][
+            "gdp per capita (us$) wb"
+        ].values[0]
+        population = int(
+            df_gdp[df_gdp["iso_3"] == iso_3_selection]["population 2026"].values[0]  # type: ignore
+        )
+        st.text(
+            f"WB GDP (US$): {gdp}\nWB GDP per capita (US$): {gdp_per_capita}\nPopulation (2026): {population:,}"
+        )
+
     # country data
     country_data = get_country_data(alpha_3=iso_3_selection)  # type: ignore
-    st.write(f'Area: {country_data["data"]["objects"][0]["area"]["kilometers"]:,} km2')
-    st.write(
-        f'Capital: {
-        ", ".join([x["name"] for x in country_data["data"]["objects"][0]["capitals"]])}'
-    )
-    st.write(
-        f'Govenrment type: {country_data["data"]["objects"][0]["government_type"]}'
-    )
-    st.write(
-        f'Languages ({len(country_data["data"]["objects"][0]["languages"])}): {
-        ", ".join([x["name"] for x in country_data["data"]["objects"][0]["languages"]])}'
-    )
+    if "data" in country_data:
+        st.write(
+            f'Capital: {
+            ", ".join([x["name"] for x in country_data["data"]["objects"][0]["capitals"]])}'
+        )
+        st.write(
+            f'Area: {country_data["data"]["objects"][0]["area"]["kilometers"]:,} km2'
+        )
+        st.write(
+            f'Govenrment type: {country_data["data"]["objects"][0]["government_type"]}'
+        )
+        st.write(
+            f'Languages ({len(country_data["data"]["objects"][0]["languages"])}): {
+            ", ".join([x["name"] for x in country_data["data"]["objects"][0]["languages"]])}'
+        )
 
-    # flag
-    st.image(country_data["data"]["objects"][0]["flag"]["url_png"])
-    st.caption(country_data["data"]["objects"][0]["flag"]["description"])
-    st.divider()
+        # flag
+        st.image(country_data["data"]["objects"][0]["flag"]["url_png"])
+
+        st.divider()
 
     # links
+    if iso_3_selection in df_sdg["Country Code ISO3"].to_list():
+        sdf_rank = f"[![](https://img.shields.io/badge/SDG_Rank_{df_sdg[df_sdg['Country Code ISO3']==iso_3_selection]['2026 SDG Index Rank'].values[0]:.0f}/169_({df_sdg[df_sdg['Country Code ISO3']==iso_3_selection]['2026 SDG Index Score'].values[0]:.2f}%)-009EDB)]({df_sdg[df_sdg['Country Code ISO3']==iso_3_selection]['sdg_profile'].values[0]})"
+    else:
+        sdf_rank = ""
+
+    prominent_color = country_data["data"]["objects"][0]["flag"]["colors"][
+        "prominent"
+    ].replace("#", "")
     st.markdown(
-        f'[{country_data["data"]["objects"][0]["flag"]["emoji"]}]({country_data["data"]["objects"][0]["links"]["official"]}) [![](https://img.shields.io/badge/{country_selection}-black?logo=wikipedia)]({country_data["data"]["objects"][0]["links"]["wikipedia"]})'
+        f"""[{country_data["data"]["objects"][0]["flag"]["emoji"]}]({country_data["data"]["objects"][0]["links"]["official"]}) [![](https://img.shields.io/badge/{str(country_selection).replace(' ', '_')}-{prominent_color}?logo=wikipedia)]({country_data["data"]["objects"][0]["links"]["wikipedia"]}) {sdf_rank}"""
     )
+
 
 # st.title(f"{country_selection}")
 
@@ -134,25 +164,15 @@ with col1:
         country = geo_data[geo_data["ADM0_A3"] == iso_3_selection]
         m = country.explore(
             popup=[  # type: ignore
-                "ADM0_A3",
                 "NAME",
                 "FORMAL_EN",
-                "POPULATION (EST)",
-                "POP_YEAR",
-                "GDP (MD)",
-                "GDP_YEAR",
                 "ECONOMY",
                 "CONTINENT",
                 "REGION_UN",
             ],
             tooltip=[  # type: ignore
-                "ADM0_A3",
                 "NAME",
                 "FORMAL_EN",
-                "POPULATION (EST)",
-                "POP_YEAR",
-                "GDP (MD)",
-                "GDP_YEAR",
                 "ECONOMY",
                 "CONTINENT",
                 "REGION_UN",
@@ -161,26 +181,29 @@ with col1:
         container_map = st.container(border=True)
         with container_map:
             st_folium(m, use_container_width=True, height=350)
-            # st_folium(m, width=450, height=450)
 
     tab1, tab2, tab3, tab4 = st.tabs(
-        ["Summary", "Risks", "Countries Mentioned", "Headlines"]
+        ["Summary", "Risks", "Countries Mentioned", "Newspaper Headlines"]
     )
     with tab1:
+        # Summary
         if df[df["country"] == country_selection]["summary"].values[0]:
             st.markdown(df[df["country"] == country_selection]["summary"].values[0])
 
     with tab2:
+        # Risks
         if df[df["country"] == country_selection]["risks"].values[0]:
             st.markdown(df[df["country"] == country_selection]["risks"].values[0])
 
     with tab3:
+        # Countries Mentioned
         if df[df["country"] == country_selection]["countries_mentioned"].values[0]:
             st.markdown(
                 df[df["country"] == country_selection]["countries_mentioned"].values[0]
             )
 
     with tab4:
+        # Headlines
         if df[df["country"] == country_selection]["headlines"].values[0]:
             st.markdown(df[df["country"] == country_selection]["headlines"].values[0])
 
@@ -229,11 +252,16 @@ with col2:
             )
 
     with col4:
-        pass
-        # if df[df["country"] == country_selection]["single_word"].values[0]:
-        #     container_word = st.container(border=True)
-        #     container_word.markdown("##### In One Word", text_alignment="center")
-        #     container_word.title(
-        #         f'{df[df["country"] == country_selection]["single_word"].values[0]}',
-        #         text_alignment="center",
-        #     )
+        if df[df["country"] == country_selection]["yoda"].values[0]:
+            container_yoda = st.container(border=True)
+            container_yoda.markdown(
+                "##### Master Yoda message", text_alignment="center"
+            )
+            container_yoda.markdown(
+                f'{df[df["country"] == country_selection]["yoda"].values[0]}',
+                text_alignment="center",
+            )
+
+
+with st.bottom:
+    st.caption("© 2026 Diego Arenas · All rights reserved")

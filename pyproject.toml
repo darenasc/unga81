@@ -3,10 +3,11 @@ name = "unga81"
 version = "0.1.0"
 authors = [{ name = "Diego Arenas", email = "darenasc@gmail.com" }]
 maintainers = [{ name = "Diego Arenas", email = "darenasc@gmail.com" }]
-description = "Add your description here"
+description = "Exploration of speeches at the UNGA81."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+  "curl-cffi>=0.16.3",
   "folium>=0.20.0",
   "loguru>=0.7.3",
   "lonboard>=0.16.0",
@@ -15,6 +16,7 @@ dependencies = [
   "maplibre[all]>=0.3.6",
   "matplotlib>=3.11.2",
   "ollama>=0.6.2",
+  "openpyxl>=3.1.5",
   "pandas>=2.1.4,<3.0.0",
   "pendulum>=3.2.0",
   "plotly>=7.1.0",
@@ -140,6 +142,3 @@ disable = '''print-statement,
         import-outside-toplevel,
         import-error,
 '''
-
-[tool.uv.workspace]
-members = ["llm_extraction"]
