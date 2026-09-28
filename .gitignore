@@ -171,3 +171,4 @@ Pipfile.lock
 data/*
 !data/processed/
 !data/raw/
+notebooks/evidence.md
