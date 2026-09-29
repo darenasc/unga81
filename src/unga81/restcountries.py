@@ -10,6 +10,12 @@ load_dotenv()
 
 API_KEY = os.getenv("API_KEY_RESTCOUNTRIES")
 
+if not API_KEY:
+    logger.warning("restcountries.com API key not found")
+    logger.warning(
+        f"Please request a free API key in https://restcountries.com/sign-up to use the restcountries.com API"
+    )
+
 
 def get_country_information(alpha_3: str) -> dict:
     """ADM0_A3 is iso_3.

@@ -13,9 +13,11 @@ EXTERNAL_DATA_DIR = DATA_DIR / "external"
 
 SPEECH_DIR = RAW_DATA_DIR / UNGA_VERSION
 APP_DIR = ROOT_DIR / "app"
+FLAGS_DIR = PROCESSED_DATA_DIR / "flags"
 DATABASE_PATH = APP_DIR / "countries.db"
 
 APP_DIR.mkdir(parents=True, exist_ok=True)
+FLAGS_DIR.mkdir(exist_ok=True, parents=True)
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
 INTERIM_DATA_DIR.mkdir(parents=True, exist_ok=True)
