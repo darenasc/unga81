@@ -1,17 +1,18 @@
-# UN General Assermbly #81 - Speeches
+# UN General Assembly #81 - Speeches
 
 [![UN Noon Briefings](https://img.shields.io/badge/-United_Nations-009EDB?style=flat&logo=unitednations&logoColor=white)](https://www.un.org)
 [![UN Noon Briefings](https://img.shields.io/badge/-UNGA81_Playlist-ee0f0f?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=_Wjvf2jJols&list=PLB69IJorxm_g)
 
-The app analyses the speech of each country at the #UNGA81 on 22 - 28 September, 2026.
+Visualization of the speeches at the #UNGA81 between 22 - 28 September, 2026.
 
-This is a personal project with the aim to explore the messages in the speeches 
+This is a personal project with the aim to explore the texts in the speeches 
 at the #UNGA81.
 
-The app is a combination of the usage of LLMs to generate information from the 
-speeches and publicly available information about the country such as 
-population, GDP, GDP per capita, government type, link to wikipedia page and 
-link to SDG report country profile.
+The app is a combination of using LLMs to extract information and publicly available datasets.
+
+Screenshot of the streamlit app:
+
+![alt text](figures/screenshot.png)
 
 ## LLM application
 
@@ -54,7 +55,7 @@ uv sync
 uv run streamlit run app/app.py
 
 # Download video URLs, transcripts and country information
-uv run unga81
+# uv run unga81
 ```
 
 ## Tools used
@@ -62,7 +63,6 @@ uv run unga81
 - Ollama
 - sqlite3
 - [Vector data from Natural Earth Data](https://www.naturalearthdata.com)
-- [REST Countries API](https://restcountries.com)
 - [Worldometer.info](https://www.worldometers.info)
 - [Sustainable Development Report database](https://dashboards.sdgindex.org/) 
 
@@ -72,12 +72,18 @@ uv run unga81
 - [UNGA81 Speech urls](https://docs.google.com/spreadsheets/d/1qtqfnRSW24j-XLN7SRKywDCuFatARCH8pUg1Rr6I2vI/export?format=csv&gid=1802282131)
 - [Admin 0 – Countries](https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/110m/cultural/ne_110m_admin_0_countries.zip)
 - [Sustainable Development Report - Access full database in Excel](https://dashboards.sdgindex.org/static/downloads/database_2026.xlsx) (accessed 27.09.2026)
+- [iso3166-flags](https://github.com/amckenna41/iso3166-flags) (flags)
 
 ## Previous years
 
 - [UNGA80](https://unga80.streamlit.app/)
 - [UNGA79](https://unga79.streamlit.app/)
 - [UNGA78](https://unga-speeches-2023.streamlit.app/)
+
+## Contributing
+
+Create an [issue](https://github.com/darenasc/unga81/issues) with your 
+suggestions and recommendations.
 
 ## **Disclaimer**
 
