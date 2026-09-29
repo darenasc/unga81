@@ -122,7 +122,8 @@ with st.sidebar:
         st.divider()
 
     # flag
-    st.image(DATA_DIR / "flags" / f"{iso_3_selection}.svg")
+    if (DATA_DIR / "flags" / f"{iso_3_selection}.svg").exists():
+        st.image(DATA_DIR / "flags" / f"{iso_3_selection}.svg")
 
     # links
     if iso_3_selection in df_sdg["Country Code ISO3"].to_list():
@@ -235,6 +236,7 @@ with col2:
 
 
 with st.bottom:
-    st.markdown(
-        f"""© 2026 · [![](https://img.shields.io/badge/{str(country_selection).replace(' ', '_')}-F8F9FA?logo=wikipedia&logoColor=black)]({df_wikipedia[df_wikipedia['iso_3']==iso_3_selection]['wikipedia_link'].values[0]}) {sdf_rank} [![](https://img.shields.io/badge/-black?logo=github)](https://github.com/darenasc/unga81/issues)"""
-    )
+    if iso_3_selection in df_wikipedia["iso_3"].to_list():
+        st.markdown(
+            f"""© 2026 · [![](https://img.shields.io/badge/{str(country_selection).replace(' ', '_')}-F8F9FA?logo=wikipedia&logoColor=black)]({df_wikipedia[df_wikipedia['iso_3']==iso_3_selection]['wikipedia_link'].values[0]}) {sdf_rank} [![](https://img.shields.io/badge/-black?logo=github)](https://github.com/darenasc/unga81/issues)"""
+        )
