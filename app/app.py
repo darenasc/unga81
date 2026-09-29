@@ -10,7 +10,7 @@ from streamlit_folium import st_folium
 
 # from unga81.config import EXTERNAL_DATA_DIR, PROCESSED_DATA_DIR
 
-DATA_DIR = Path("data")
+DATA_DIR = Path(__file__).absolute().parent / "data"
 
 st.set_page_config(
     page_title="#UNGA81",
