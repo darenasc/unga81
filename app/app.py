@@ -8,7 +8,9 @@ import pandas as pd
 import streamlit as st
 from streamlit_folium import st_folium
 
-from unga81.config import EXTERNAL_DATA_DIR, PROCESSED_DATA_DIR
+# from unga81.config import EXTERNAL_DATA_DIR, PROCESSED_DATA_DIR
+
+DATA_DIR = Path("data")
 
 st.set_page_config(
     page_title="#UNGA81",
@@ -65,7 +67,7 @@ def get_data(db: Path):
 
 
 @st.cache_data
-def get_geodata(file_path: Path = EXTERNAL_DATA_DIR / "ne_110m_admin_0_countries.zip"):
+def get_geodata(file_path: Path = DATA_DIR / "ne_110m_admin_0_countries.zip"):
     geo_data = gpd.read_file(file_path)
     geo_data["POPULATION (EST)"] = geo_data["POP_EST"].apply(lambda x: f"{int(x):,}")
     geo_data["GDP (MD)"] = geo_data["GDP_MD"].apply(lambda x: f"${int(x):,}")
@@ -77,15 +79,15 @@ def get_geodata(file_path: Path = EXTERNAL_DATA_DIR / "ne_110m_admin_0_countries
 
 
 @st.cache_data
-def get_wikipedia_links(file_path: Path = PROCESSED_DATA_DIR / "wikipedia_links.csv"):
+def get_wikipedia_links(file_path: Path = DATA_DIR / "wikipedia_links.csv"):
     df = pd.read_csv(file_path)
     return df
 
 
 df = get_data(Path(__file__).absolute().parent / "countries.db")
-geo_data = get_geodata(EXTERNAL_DATA_DIR / "ne_110m_admin_0_countries.zip")
-df_gdp = pd.read_csv(PROCESSED_DATA_DIR / "worldometer.csv")
-df_sdg = pd.read_csv(PROCESSED_DATA_DIR / "sdg_countries.csv")
+geo_data = get_geodata(DATA_DIR / "ne_110m_admin_0_countries.zip")
+df_gdp = pd.read_csv(DATA_DIR / "worldometer.csv")
+df_sdg = pd.read_csv(DATA_DIR / "sdg_countries.csv")
 df_wikipedia = get_wikipedia_links()
 
 
@@ -120,7 +122,7 @@ with st.sidebar:
         st.divider()
 
     # flag
-    st.image(PROCESSED_DATA_DIR / "flags" / f"{iso_3_selection}.svg")
+    st.image(DATA_DIR / "flags" / f"{iso_3_selection}.svg")
 
     # links
     if iso_3_selection in df_sdg["Country Code ISO3"].to_list():
