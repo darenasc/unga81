@@ -1,6 +1,6 @@
 [project]
 name = "unga81"
-version = "0.1.0"
+version = "1.0.0"
 authors = [{ name = "Diego Arenas", email = "darenasc@gmail.com" }]
 maintainers = [{ name = "Diego Arenas", email = "darenasc@gmail.com" }]
 description = "Exploration of speeches at the UNGA81."

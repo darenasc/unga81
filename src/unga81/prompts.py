@@ -1,6 +1,10 @@
 import ollama
 
-summary_prompt = """Summarize the following speech. Ignore the speaker and focus on the content. Output ONLY the summary, nothing else.
+summary_prompt = """Provide a concise summary of the speech, extracting the most important ideas and concepts. 
+Extract the key statistics or data mentioned in the speech. 
+Summarize the speech in a specific format, such as a bullet-point list.
+Avoid referencing the speaker's personal opinions.
+Output ONLY the summary, nothing else.
 
 Speech:
 '''{text}'''
@@ -73,6 +77,13 @@ Speech:
 
 yoda_prompt = """Craft a short advice in Yoda's voice, based on the content of the speech. Don't describe it, just write what Yoda would say. 
 Output ONLY the Yoda advice, nothing else.
+
+Speech:
+'''{text}'''
+"""
+
+galaxy_telegram_prompt = """What it the single most relevant idea from the following speech to be send in a telegram to the interfalactic federation of planets in the galaxy?
+Output ONLY the idea, nothing else.
 
 Speech:
 '''{text}'''
