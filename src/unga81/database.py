@@ -246,6 +246,7 @@ def update_prompt_result(
     country: str,
     iso_3: str,
     text: str,
+    temperature: float = 0,
     overwrite: bool = False,
 ):
     """Update the database with the results of a given prompt for a given country.
@@ -268,7 +269,9 @@ def update_prompt_result(
         return
 
     logger.info(f"Running '{prompt_name}' prompt with model '{model}' for {country}")
-    result = run_model_prompt(model=model, prompt=prompt, text=text)
+    result = run_model_prompt(
+        model=model, prompt=prompt, text=text, temperature=temperature
+    )
     logger.info(f"Updating '{prompt_name}' with '{model}' for {country}")
     update_analysis_column(
         conn=conn,

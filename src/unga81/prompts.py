@@ -79,7 +79,9 @@ Speech:
 """
 
 
-def run_model_prompt(model: str, prompt: str, text: str, think: bool = False):
+def run_model_prompt(
+    model: str, prompt: str, text: str, think: bool = False, temperature: float = 0
+):
     """Run a prompt in an Ollama model.
 
     Args:
@@ -95,5 +97,6 @@ def run_model_prompt(model: str, prompt: str, text: str, think: bool = False):
         model=model,
         prompt=prompt.format(text=text),
         think=think,
+        options={"temperature": temperature},
     )
     return result
