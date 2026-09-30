@@ -10,7 +10,8 @@ Visualization of the speeches at the #UNGA81 between 22 - 28 September, 2026.
 This is a personal project with the aim to explore the texts in the speeches 
 at the #UNGA81.
 
-The app is a combination of using LLMs to extract information and publicly available datasets.
+The app is a combination of using LLMs to extract information and publicly 
+available datasets. You can take a look at the prompts used [here](./src/unga81/prompts.py).
 
 Screenshot of the streamlit app:
 

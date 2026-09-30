@@ -9,6 +9,14 @@ The format is based on [Keep A Changelog](https://keepachangelog.com/en/1.0.0/),
 - Prompt with the main idea for a telegram
 - Prompt to generate an entry for the book The Hichhiker's Guide to the Galaxy
 - Transcript download button
+- Show in the app the model and version of the LLM used for each task
+
+## [1.0.1]
+
+## Updated
+
+- Summary generated with `gemma3:4b`
+- Database with updated summaries
 
 ## [1.0.0]
 
