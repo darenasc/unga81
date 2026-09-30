@@ -3,6 +3,8 @@
 [![UN Noon Briefings](https://img.shields.io/badge/-United_Nations-009EDB?style=flat&logo=unitednations&logoColor=white)](https://www.un.org)
 [![UN Noon Briefings](https://img.shields.io/badge/-UNGA81_Playlist-ee0f0f?style=flat&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=_Wjvf2jJols&list=PLB69IJorxm_g)
 
+Access the [#UNGA81 App](https://unga81.streamlit.app).
+
 Visualization of the speeches at the #UNGA81 between 22 - 28 September, 2026.
 
 This is a personal project with the aim to explore the texts in the speeches 
@@ -24,8 +26,6 @@ Screenshot of the streamlit app:
 * [x] Hashtags generated from the speech
 * [x] Fictitional newspaper headlines in different styles
 * [x] A message from master Yoda
-
-## Usage locally
 
 ### Prerequisites
 
